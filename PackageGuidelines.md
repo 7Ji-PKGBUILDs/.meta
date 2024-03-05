@@ -31,21 +31,33 @@ Please follow these extra guidelines on kernel packages.
 - Kernel packages should not follow `provides` and `conflicts` rules for `-bin` and VCS packages. They can co-exist file-system-wise anyway if you follow the last rule. This would make it much easier to jump between different kernel packages to debug.
 - It's recommended to name kernel packages in the following way:
   ```
-  linux(-[architecture])(-[vendor](-[bsp]))(-[upstream])
+  linux(-[architecture])(-[vendor](-[device])(-[bsp ver]))(-[feature])(-[upstream])
   ```
   In which:
-  - `architecture` shall be explicited if this kernel PKGBUILD supports a specific architecture, e.g. `linux-aarch64`, `linux-armv7h`, etc. This also serves as a namespace and avoids conflicting names.
-  - `vendor` shall be the name of a vendor (e.g. `amlogic`, `rockchip`) if this kernel is tailored for a specific vendor's platform, especially if this kernel is a BSP kernel, in that case please also add `-[bsp]` to mark the bsp version, e.g. `linux-rockchip-bsp6.1`. 
-  - `upstream` shall be set if the source does not come from mainline or vendor directly, but a third party maintainer, e.g. `linux-aarch64-7ji` builds from ther kernel source maintained by 7Ji.
+  - `architecture` shall be explicitely set if this kernel PKGBUILD supports a specific architecture, e.g. `linux-aarch64`, `linux-armv7h`, etc. This also serves as a namespace and avoids conflicting names.
+  - `vendor` shall be the name of a vendor (e.g. `amlogic`, `rockchip`) if this kernel is tailored for a specific vendor's platform
+    - if this kernel is only for a specific device, add that
+    - if this kernel is a BSP kernel, please also add `-[bsp ver]` to mark the bsp version, e.g. `linux-rockchip-bsp6.1`. 
+  - `feature` shall be set if a noticable feature is only available in such kernel package, e.g. `linux-panthor`.
+  - `upstream` shall be set if the source does not come from mainline or vendor directly, but a third party maintainer (including manufacturer), e.g. `linux-aarch64-7ji` builds from ther kernel source maintained by 7Ji.
 
   An example name:
   ```
-  linux-aarch64-rockchip-bsp6.1-joshua
+  linux-aarch64-rockchip-bsp6.1-panthor-joshua
   ```
   - `-aarch64` this is for `aarch64` architecture
-  - `-rockchip` this is for platform made by vendor `rockchip`
+  - `-rockchip` this is for platforms made by vendor `rockchip`
   - `-bsp6.1` this builds from bsp6.1 source
+  - `-panthor` this is an experimental kernel that has backported `panthor`, this is set as there're multiple kernel trees maintained by `joshua`, and it would cause conflicts
   - `-joshua` this is not from bsp6.1 directly, but from Joshua-Riek's kernel repo
+  Another example:
+  ```
+  linux-aarch64-amlogic-ogu-bsp4.14-odroid
+  ```
+  - `amlogic` vendor
+  - `ogu` Odroid Go Ultra specific
+  - `bsp4.14` the BSP version
+  - `odroid` kernel source maintained by Odroid
 
 
 

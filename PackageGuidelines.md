@@ -50,14 +50,15 @@ Please follow these extra guidelines on kernel packages.
   - `-bsp6.1` this builds from bsp6.1 source
   - `-panthor` this is an experimental kernel that has backported `panthor`, this is set as there're multiple kernel trees maintained by `joshua`, and it would cause conflicts
   - `-joshua` this is not from bsp6.1 directly, but from Joshua-Riek's kernel repo
+
   Another example:
   ```
   linux-aarch64-amlogic-ogu-bsp4.14-odroid
   ```
-  - `amlogic` vendor
-  - `ogu` Odroid Go Ultra specific
-  - `bsp4.14` the BSP version
-  - `odroid` kernel source maintained by Odroid
+  - `-amlogic` vendor
+  - `-ogu` Odroid Go Ultra specific
+  - `-bsp4.14` the BSP version
+  - `-odroid` kernel source maintained by Odroid
 
 
 
